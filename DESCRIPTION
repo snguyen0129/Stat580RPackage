@@ -1,12 +1,18 @@
-Title: -insertname-
-Version: 0.1
-Authors@R: person("First", "Last", email = "first.last@example.com",
-                  role = c("aut", "cre"))
-Description: What the package does (one paragraph)
-Depends: R (>= 3.1.0)
-License: What license is it under?
+Package: Stat580RPackage
+Type: Package
+Title: Teaching Density Estimation and Visualization 
+Version: 0.1.0
+Author: Alfred Hernandez
+    Justin Nguyen
+    Kaelia Okamura
+    Sean Nguyen
+Maintainer: Alfred Hernandez <yourself@somewhere.net>
+    Justin Nguyen <yourself@somewhere.net>
+    Kaelia Okamura <yourself@somewhere.net>
+    Sean Nguyen <snguyen0129@gmail.com>
+Description: A package that focuses on teaching material regarding Density
+    Estimation and Principal Component analysis.
+License: GPL-3
+Encoding: UTF-8
 LazyData: true
-
-Alfred has also been here and edited this!
-Kaelia has been here too!
-Hey it's me Justin
+RoxygenNote: 7.1.1
