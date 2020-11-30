@@ -2,16 +2,19 @@ Package: Stat580RPackage
 Type: Package
 Title: Teaching Density Estimation and Visualization 
 Version: 0.1.0
-Author: Alfred Hernandez
-    Justin Nguyen
-    Kaelia Okamura
-    Sean Nguyen
-Maintainer: Alfred Hernandez <yourself@somewhere.net>
-    Justin Nguyen <yourself@somewhere.net>
-    Kaelia Okamura <yourself@somewhere.net>
-    Sean Nguyen <snguyen0129@gmail.com>
+Authors@R: c(
+    person("Sean", "Nguyen", email = "snguyen4927@sdsu.edu", role = c("aut", "cre")),
+    person("Alfred", "Hernandez", email = "yourself@somewhere.net", role = c("aut")),
+    person("Justin", "Nguyen", email = "yourself@somewhere.net", role = c("aut")),
+    person("Kaelia", "Okamura", email = "yourself@somewhere.net", role = c("aut")))
 Description: A package that focuses on teaching material regarding Density
     Estimation and Principal Component analysis.
+Depends:
+    shiny,
+    shinydashboard,
+    hexbin,
+    MASS,
+    corrplot
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
