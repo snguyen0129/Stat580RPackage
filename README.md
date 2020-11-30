@@ -7,4 +7,4 @@ To test:
 3) Run 'devtools::load_all()' (probably in the console)
 4) Run 'startApp()'
 
-It should start the Shiny app. 
+It should start the Shiny app.
