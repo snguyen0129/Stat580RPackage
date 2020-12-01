@@ -3,7 +3,7 @@
 \docType{data}
 \name{ui}
 \alias{ui}
-\title{Shiny app UI: builds the visible content}
+\title{Shiny app UI}
 \format{
 An object of class \code{shiny.tag} of length 3.
 }
@@ -11,6 +11,6 @@ An object of class \code{shiny.tag} of length 3.
 ui
 }
 \description{
-Shiny app UI: builds the visible content
+Builds the visible content
 }
 \keyword{datasets}

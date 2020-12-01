@@ -2,7 +2,7 @@
 % Please edit documentation in R/server.R
 \name{server}
 \alias{server}
-\title{Shiny app Server: obtains info and returns data}
+\title{Shiny app Server}
 \usage{
 server(input, output)
 }
@@ -12,5 +12,5 @@ server(input, output)
 \item{output}{provided by shiny}
 }
 \description{
-Shiny app Server: obtains info and returns data
+Obtains info and returns data
 }
