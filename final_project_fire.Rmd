@@ -18,8 +18,7 @@ colnames(fire)
 
 
 ```{r}
-#hist() function: comparing bins
-
+# hist() function: comparing bins
 hist(fire$problem_count, xlim = (c(0,800)), xlab = "Problem count", main = "Sturges")
 
 hist(fire$problem_count, xlim = (c(0,800)), breaks = "Scott", xlab = "Problem count", main = "Scott")
@@ -29,7 +28,7 @@ hist(fire$problem_count, xlim = (c(0,800)), breaks = "FD", xlab = "Problem count
 
 
 ```{r}
-#density() func for KDE's
+# density() func for KDE's
 gKernal <- density(fire$problem_count)
 plot(gKernal, lwd = 2, col = "black", main = "KDEs for Month Response")
 
@@ -51,6 +50,7 @@ plot(hexbin(fire$month_response, fire$problem_count, xbins = 15), xlab = "Median
 ```
 
 ```{r}
+# bandwidth for each variable
 library(MASS)
 bandwidth.nrd(fire$month_response)
 bandwidth.nrd(fire$problem_count)
@@ -64,12 +64,12 @@ image(four, xlab = "Median Age", ylab = "Median Income")
 ```
 
 ```{r}
-#scatterplot matrix
+# scatterplot matrix
 pairs(fire[, c("problem_count", "month_response","year_response")])
 ```
 
 ```{r}
-#corrplot() func
+# corrplot() func
 library(corrplot)
 corr_fire <- cor(fire[,c("problem_count", "month_response","year_response")])
 
@@ -77,7 +77,7 @@ corrplot(corr_fire)
 ```
 
 ```{r}
-#PCA
+# PCA
 fire <- fire[,c("problem_count", "month_response","year_response")]
 fire_scale <- scale(fire)
 
