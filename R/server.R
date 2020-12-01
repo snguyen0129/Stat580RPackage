@@ -11,6 +11,18 @@
 
 server <- function(input, output) {
 
+  output$singleSturges <- renderPlot({
+    hist(fire$problem_count, xlim = (c(0,800)), xlab = "Problem count", main = "Sturges")
+  })
+
+  output$singleScott <- renderPlot({
+    hist(fire$problem_count, xlim = (c(0,800)), breaks = "Scott", xlab = "Problem count", main = "Scott")
+  })
+
+  output$singleFreedman <- renderPlot({
+    hist(fire$problem_count, xlim = (c(0,800)), breaks = "FD", xlab = "Problem count", main = "Freedman-Diaconis")
+  })
+
   # Takes the input and places in a variable
   # Used to display the user's input back to them, allowing them to verify their answer
   output$outputFill2 <- renderPrint({ input$inputFill2 })
@@ -19,27 +31,28 @@ server <- function(input, output) {
 
   # When the submit button is clicked, it will obtain the input and compare to the answer.
 
+  # You should change 7 numbers
   output$outputMult1 <- renderText({ input$inputMult1 })
   answerMult1 <- eventReactive(input$submitMult1, {
-    if (input$inputMult1 == 'A') {
+    if (input$inputMult1 == 'C') {
+      'Correct'
+    }
+    else {
+      'Incorrect. Correct answer is C.'
+    }
+  })
+  output$resultMult1 <- renderText({ answerMult1() })
+
+  output$outputMult2 <- renderText({ input$inputMult2 })
+  answerMult2 <- eventReactive(input$submitMult2, {
+    if (input$inputMult2 == 'A') {
       'Correct'
     }
     else {
       'Incorrect. Correct answer is A.'
     }
   })
-  output$resultMult1 <- renderText({ answerMult1() })
-
-  output$outputMult5 <- renderText({ input$inputMult5 })
-  answerMult5 <- eventReactive(input$submitMult5, {
-    if (input$inputMult5 == 'C') {
-      'Correct'
-    }
-    else {
-      'Incorrect. Correct answer is C: Freedman-Diaconis Rule'
-    }
-  })
-  output$resultMult5 <- renderText({ answerMult5() })
+  output$resultMult2 <- renderText({ answerMult2() })
 
   # Checks if the input matches the answer exactly
   answerCheck3 <- eventReactive(input$submitCheck3, {
