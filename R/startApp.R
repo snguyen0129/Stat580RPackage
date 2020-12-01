@@ -1,3 +1,5 @@
+#' Start Shiny App
+#'
 #' Launches the created shiny app
 #'
 #' @import shiny
@@ -6,7 +8,7 @@
 #'
 #' @return shiny application object
 #'
-#' @examples \dontrun {startApp()}
+#' @examples \dontrun{startApp()}
 #'
 #'
 
