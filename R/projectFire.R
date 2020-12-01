@@ -37,8 +37,8 @@ bandwidth.nrd(fire$month_response)
 bandwidth.nrd(fire$problem_count)
 
 # kde2d() function
-#four <- kde2d(fire$month_responsee, fire$problem_count, n = 100, h = c(10,10))
-#image(four, xlab = "Median Age", ylab = "Median Income")
+#dens <- kde2d(fire$month_response, fire$problem_count, n = 100, h = c(4,3000))
+#image(dens, xlab = "Month Response", ylab = "Problem Count")
 
 #scatterplot matrix
 pairs(fire[, c("problem_count", "month_response","year_response")])
