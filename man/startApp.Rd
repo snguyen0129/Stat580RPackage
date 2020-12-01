@@ -2,7 +2,7 @@
 % Please edit documentation in R/startApp.R
 \name{startApp}
 \alias{startApp}
-\title{Launches the created shiny app}
+\title{Start Shiny App}
 \usage{
 startApp()
 }
@@ -13,7 +13,7 @@ shiny application object
 Launches the created shiny app
 }
 \examples{
-\dontrun {startApp()}
+\dontrun{startApp()}
 
 
 }
