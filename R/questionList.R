@@ -63,10 +63,10 @@ q18Answer <- column(4, textOutput('resultMult18'))
 q19Question <- list(19, "PC1 is the one-dimensional representation of the data that captures the ____ amount of variability.", "Least", "Largest", "Median", "None of the above.")
 q19Answer <- column(4, textOutput('resultMult19'))
 
-q20Question <- list(20, "", "", "", "", "")
+q20Question <- list(20, "After computing PCA  of your data, you get this table. What does the first column of numbers represent?", "PC1", "PC2", "PC3", "PC4")
 q20Answer <- column(4, textOutput('resultMult20'))
 
-q21Question <- list(21, "", "", "", "", "")
+q21Question <- list(21, "Using the table above, which variable(s) most strongly correlate with PC2?", "Median_age", "Population", "Children_proportion", "Both a and c")
 q21Answer <- column(4, textOutput('resultMult21'))
 
 q22Question <- list(22, "A scree plot shows how many __ account for a certain amount of variability.", "Variables", "PC’s", "Datapoints", "All of the above.")
@@ -75,7 +75,7 @@ q22Answer <- column(4, textOutput('resultMult22'))
 q23Question <- list(23, "What are the x and y axes when doing a scree plot?", "The x-axis and y-axis are the variables within the dataset.", "The x-axis is the numeric value of the PC and y-axis is the proportion of variance explained in the scree plot.", "The x-axis is the representation of the PC and y-axis is the simple height of the scree plot.", "The x-axis is the length of the variable and y-axis is the expected value of the scree plot.")
 q23Answer <- column(4, textOutput('resultMult23'))
 
-q24Question <- list(24, "", "", "", "", "")
+q24Question <- list(24, "Using the scree plot below, how many PC’s are necessary to capture at least 90% of the variability?", "4", "8", "6", "3")
 q24Answer <- column(4, textOutput('resultMult24'))
 
 checkanswers <- c("A", "B") # This is the answers for the sample checkbox question
