@@ -10,27 +10,27 @@
 #'
 
 server <- function(input, output) {
-  
+
   output$singleSturges <- renderPlot({
     hist(fire$problem_count, xlim = (c(0,800)), xlab = "Problem count", main = "Sturges")
   })
-  
+
   output$singleScott <- renderPlot({
     hist(fire$problem_count, xlim = (c(0,800)), breaks = "Scott", xlab = "Problem count", main = "Scott")
   })
-  
+
   output$singleFreedman <- renderPlot({
     hist(fire$problem_count, xlim = (c(0,800)), breaks = "FD", xlab = "Problem count", main = "Freedman-Diaconis")
   })
-  
+
   # Takes the input and places in a variable
   # Used to display the user's input back to them, allowing them to verify their answer
   output$outputFill2 <- renderPrint({ input$inputFill2 })
   output$outputCheck3 <- renderText({ input$inputCheck3 })
   output$outputProvide4 <- renderPrint({ input$inputProvide4 })
-  
+
   # When the submit button is clicked, it will obtain the input and compare to the answer.
-  
+
   # You should change 7 numbers
   output$outputMult1 <- renderText({ input$inputMult1 })
   answerMult1 <- eventReactive(input$submitMult1, {
@@ -42,7 +42,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult1 <- renderText({ answerMult1() })
-  
+
   output$outputMult2 <- renderText({ input$inputMult2 })
   answerMult2 <- eventReactive(input$submitMult2, {
     if (input$inputMult2 == 'A') {
@@ -53,7 +53,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult2 <- renderText({ answerMult2() })
-  
+
   output$outputMult3 <- renderText({ input$inputMult3 })
   answerMult3 <- eventReactive(input$submitMult3, {
     if (input$inputMult3 == 'B') {
@@ -64,7 +64,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult3 <- renderText({ answerMult3() })
-  
+
   output$outputMult4 <- renderText({ input$inputMult4 })
   answerMult4 <- eventReactive(input$submitMult4, {
     if (input$inputMult4 == 'B') {
@@ -75,7 +75,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult4 <- renderText({ answerMult4() })
-  
+
   output$outputMult5 <- renderText({ input$inputMult5 })
   answerMult5 <- eventReactive(input$submitMult5, {
     if (input$inputMult5 == 'D') {
@@ -86,7 +86,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult5 <- renderText({ answerMult5() })
-  
+
   output$outputMult6 <- renderText({ input$inputMult6 })
   answerMult6 <- eventReactive(input$submitMult6, {
     if (input$inputMult6 == 'C') {
@@ -97,7 +97,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult6 <- renderText({ answerMult6() })
-  
+
   output$outputMult7 <- renderText({ input$inputMult7 })
   answerMult7 <- eventReactive(input$submitMult7, {
     if (input$inputMult7 == 'C') {
@@ -108,7 +108,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult7 <- renderText({ answerMult7() })
-  
+
   output$outputMult8 <- renderText({ input$inputMult8 })
   answerMult8 <- eventReactive(input$submitMult8, {
     if (input$inputMult8 == 'D') {
@@ -119,7 +119,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult8 <- renderText({ answerMult8() })
-  
+
   output$outputMult9 <- renderText({ input$inputMult9 })
   answerMult9 <- eventReactive(input$submitMult9, {
     if (input$inputMult9 == 'B') {
@@ -130,7 +130,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult9 <- renderText({ answerMult9() })
-  
+
   output$outputMult10 <- renderText({ input$inputMult10 })
   answerMult10 <- eventReactive(input$submitMult10, {
     if (input$inputMult10 == 'A') {
@@ -141,7 +141,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult10 <- renderText({ answerMult10() })
-  
+
   output$outputMult11 <- renderText({ input$inputMult11 })
   answerMult11 <- eventReactive(input$submitMult11, {
     if (input$inputMult11 == 'D') {
@@ -152,7 +152,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult11 <- renderText({ answerMult11() })
-  
+
   output$outputMult12 <- renderText({ input$inputMult12 })
   answerMult12 <- eventReactive(input$submitMult12, {
     if (input$inputMult12 == 'C') {
@@ -163,7 +163,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult12 <- renderText({ answerMult12() })
-  
+
   output$outputMult13 <- renderText({ input$inputMult13 })
   answerMult13 <- eventReactive(input$submitMult13, {
     if (input$inputMult13 == 'C') {
@@ -174,7 +174,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult13 <- renderText({ answerMult13() })
-  
+
   output$outputMult14 <- renderText({ input$inputMult14 })
   answerMult14 <- eventReactive(input$submitMult14, {
     if (input$inputMult14 == 'C') {
@@ -185,7 +185,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult14 <- renderText({ answerMult14() })
-  
+
   output$outputMult15 <- renderText({ input$inputMult15 })
   answerMult15 <- eventReactive(input$submitMult15, {
     if (input$inputMult15 == 'B') {
@@ -196,7 +196,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult15 <- renderText({ answerMult15() })
-  
+
   output$outputMult16 <- renderText({ input$inputMult16 })
   answerMult16 <- eventReactive(input$submitMult16, {
     if (input$inputMult16 == 'B') {
@@ -207,7 +207,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult16 <- renderText({ answerMult16() })
-  
+
   output$outputMult17 <- renderText({ input$inputMult17 })
   answerMult17 <- eventReactive(input$submitMult17, {
     if (input$inputMult17 == 'A') {
@@ -218,7 +218,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult17 <- renderText({ answerMult17() })
-  
+
   output$outputMult18 <- renderText({ input$inputMult18 })
   answerMult18 <- eventReactive(input$submitMult18, {
     if (input$inputMult18 == 'D') {
@@ -229,7 +229,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult18 <- renderText({ answerMult18() })
-  
+
   output$outputMult19 <- renderText({ input$inputMult19 })
   answerMult19 <- eventReactive(input$submitMult19, {
     if (input$inputMult19 == 'B') {
@@ -240,7 +240,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult19 <- renderText({ answerMult19() })
-  
+
   output$outputMult20 <- renderText({ input$inputMult20 })
   answerMult20 <- eventReactive(input$submitMult20, {
     if (input$inputMult20 == 'A') {
@@ -251,7 +251,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult20 <- renderText({ answerMult20() })
-  
+
   output$outputMult21 <- renderText({ input$inputMult21 })
   answerMult21 <- eventReactive(input$submitMult21, {
     if (input$inputMult21 == 'D') {
@@ -262,7 +262,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult21 <- renderText({ answerMult21() })
-  
+
   output$outputMult22 <- renderText({ input$inputMult22 })
   answerMult22 <- eventReactive(input$submitMult22, {
     if (input$inputMult22 == 'B') {
@@ -273,7 +273,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult22 <- renderText({ answerMult22() })
-  
+
   output$outputMult23 <- renderText({ input$inputMult23 })
   answerMult23 <- eventReactive(input$submitMult23, {
     if (input$inputMult23 == 'B') {
@@ -284,7 +284,7 @@ server <- function(input, output) {
     }
   })
   output$resultMult23 <- renderText({ answerMult23() })
-  
+
   output$outputMult24 <- renderText({ input$inputMult24 })
   answerMult24 <- eventReactive(input$submitMult24, {
     if (input$inputMult24 == 'C') {
@@ -295,8 +295,8 @@ server <- function(input, output) {
     }
   })
   output$resultMult24 <- renderText({ answerMult24() })
-  
-  
+
+
   # Checks if the input matches the answer exactly
   answerCheck3 <- eventReactive(input$submitCheck3, {
     if (isTRUE(all.equal(input$inputCheck3, checkanswers))) {
@@ -306,20 +306,20 @@ server <- function(input, output) {
       'Incorrect. Correct answer is A, B.'
     }
   })
-  
+
   # This particular example requires a number for the input
   # The code will have to be modified for other types of questions.
   answerFill2 <- eventReactive(input$submitFill2, {
     # Checks if the input does not contain a non-digit: AKA, if input contains only numbers.
     # The input is stored as a string, so we can't use is.numeric()
     if (!grepl("\\D", input$inputFill2)) {
-      
+
       # If so, runs the code using the input.
       get_example <- function(x){
         z <- x + as.numeric(input$inputFill2) # as.numeric to convert the input string to a numeric
         return(z)
       }
-      
+
       # States correct or incorrect as necessary.
       if (get_example(2) == 3) {
         'Correct'
@@ -328,13 +328,13 @@ server <- function(input, output) {
         paste('Incorrect. Your output was ', get_example(2))
       }
     }
-    
+
     # If not, tells user to input a number.
     else {
       'Please enter a number.'
     }
   })
-  
+
   answerProvide4 <- eventReactive(input$submitProvide4, {
     # Checks if the input does not contain a non-digit: AKA, if input contains only numbers.
     # The input is stored as a string, so we can't use is.numeric()
@@ -346,7 +346,7 @@ server <- function(input, output) {
       paste('Incorrect. Your output was ', eval(parse(text=input$inputProvide4)))
     }
   })
-  
+
   # Saves the output from above into a variable that is then displayed to the user through the UI.
   # EX: Might save 'Correct' or 'Incorrect. Correct answer is A.'
   output$resultFill2 <- renderText({ answerFill2() })

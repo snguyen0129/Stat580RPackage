@@ -6,23 +6,29 @@
 #'
 #' @param questionNum Integer, the question number
 #' @param questionBody String, the question being asked
-#' @param answerA String, option A
-#' @param answerB String, option B
-#' @param answerC String, option C
-#' @param answerD String, option D
+#' @param ... String, Answer options
 #'
 #' @examples
 #' multChoice(1, "Sample Multiple Choice", "Answer 1", "Answer 2", "Answer 3", "Answer 4")
+#' multChoice(1, "Sample Multiple Choice", "Answer 1", "Answer 2", "Answer 3")
 #'
 #'
 
-multChoice <- function(questionNum, questionBody, answerA, answerB, answerC, answerD) {
-  A <- paste("A)", answerA)
-  B <- paste("B)", answerB)
-  C <- paste("C)", answerC)
-  D <- paste("D)", answerD)
+multChoice <- function(questionNum, questionBody, ...) {
+  answer <- list(...)
   selection <- c("A","B", "C", "D")
-  names(selection) <- c(A, B, C, D)
+
+  if (length(answer) < 4){
+    for(i in 1:(4 - length(answer))) {
+      selection <- selection[-length(selection)] #remove value
+    }
+  }
+
+  for(i in 1:length(answer)) {
+    answer[[i]] <- paste0(selection[i], ") ", answer[i])
+  }
+
+  names(selection) <- answer
 
   column(8, wellPanel(
     h2(paste("Question", questionNum)),
