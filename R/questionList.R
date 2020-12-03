@@ -48,10 +48,10 @@ q13Answer <- column(4, textOutput('resultMult13'))
 q14Question <- list(14, "When looking at a correlation matrix, the _____ circles correspond to _____ correlation while the _____ circles correspond to _____ correlation.", "Large, low, small, high.", "Small, low, large, high.", "Large, high, small, low.", "Small, high, large, low.")
 q14Answer <- column(4, textOutput('resultMult14'))
 
-q15Question <- list(15, "", "", "", "", "")
+q15Question <- list(15, "Strong negative correlations mean there is almost no correlation.", "True", "False")
 q15Answer <- column(4, textOutput('resultMult15'))
 
-q16Question <- list(16, "", "", "", "", "")
+q16Question <- list(16, "Standardizing variables using the scale() function in R before proceeding with PCA is rarely required.", "True", "False")
 q16Answer <- column(4, textOutput('resultMult16'))
 
 q17Question <- list(17, "Principal Component Analysis (PCA) is a dimension  ____ method.", "Reduction", "Maximization", "Minimization", "None of the above.")
