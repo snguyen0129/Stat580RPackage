@@ -4,26 +4,21 @@
 \alias{multChoice}
 \title{Multiple Choice Question}
 \usage{
-multChoice(questionNum, questionBody, answerA, answerB, answerC, answerD)
+multChoice(questionNum, questionBody, ...)
 }
 \arguments{
 \item{questionNum}{Integer, the question number}
 
 \item{questionBody}{String, the question being asked}
 
-\item{answerA}{String, option A}
-
-\item{answerB}{String, option B}
-
-\item{answerC}{String, option C}
-
-\item{answerD}{String, option D}
+\item{...}{String, Answer options}
 }
 \description{
 Creates the UI for a multiple choice question using Radio Buttons, allowing one answer to be selected.
 }
 \examples{
 multChoice(1, "Sample Multiple Choice", "Answer 1", "Answer 2", "Answer 3", "Answer 4")
+multChoice(1, "Sample Multiple Choice", "Answer 1", "Answer 2", "Answer 3")
 
 
 }
