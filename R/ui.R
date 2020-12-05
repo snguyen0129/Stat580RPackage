@@ -23,7 +23,7 @@ ui <- dashboardPage(
     menuSubItem("Hexbin Q8", tabName = "sub8"),
     menuSubItem("Hexbin Q9", tabName = "sub9"),
     menuSubItem("Kde2d Q10", tabName = "sub10"),
-    menuSubItem("Kde2d Q10", tabName = "sub11"),
+    menuSubItem("Kde2d Q11", tabName = "sub11"),
     menuItem("Correlation Visualization", tabName = "corrVis"),
     menuSubItem("Scatterplots Q12", tabName = "sub12"),
     menuSubItem("Scatterplots Q13", tabName = "sub13"),
