@@ -8,7 +8,7 @@
 #'
 
 ui <- dashboardPage(
-  dashboardHeader(title = "Our dashboard title here", titleWidth = 500),
+  dashboardHeader(title = "STAT580 Visualization and Kernel Density Estimation", titleWidth = 500),
   dashboardSidebar(h3("Navigation", align = "center"), sidebarMenu(
     menuItem("Introduction", tabName = "intro"),
     menuItem("Visualization in Single Dimensions", tabName = "singleVis"),
@@ -59,11 +59,7 @@ ui <- dashboardPage(
           h4(single5, style = "line-height: 1.5;"),
           h4(single6, style = "line-height: 1.5;"),
           h4(single7, style = "line-height: 1.5;")))),
-        fluidRow(
-          box(plotOutput("singleSturges")),
-          box(plotOutput("singleScott")),
-          box(plotOutput("singleFreedman"))
-        ),
+        fluidRow(do.call(fillBlank, getHist), answerHist),
         fluidRow(column(12, wellPanel(
           h4(single8, style = "line-height: 1.5;"),
           h4(single9, style = "line-height: 1.5;"))))),
