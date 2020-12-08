@@ -4,9 +4,9 @@ Title: Teaching Density Estimation and Visualization
 Version: 0.1.0
 Authors@R: c(
     person("Sean", "Nguyen", email = "snguyen4927@sdsu.edu", role = c("aut", "cre")),
-    person("Alfred", "Hernandez", email = "yourself@somewhere.net", role = c("aut")),
-    person("Justin", "Nguyen", email = "yourself@somewhere.net", role = c("aut")),
-    person("Kaelia", "Okamura", email = "yourself@somewhere.net", role = c("aut")))
+    person("Alfred", "Hernandez", email = "ahernandez2685@sdsu.edu", role = c("aut")),
+    person("Justin", "Nguyen", email = "justinnguyen2018@gmail.com", role = c("aut")),
+    person("Kaelia", "Okamura", email = "kokamura8720@sdsu.edu", role = c("aut")))
 Description: A package that focuses on teaching material regarding Density
     Estimation and Principal Component analysis.
 Depends:
