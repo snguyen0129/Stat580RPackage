@@ -11,16 +11,25 @@
 
 server <- function(input, output) {
 
-  output$singleSturges <- renderPlot({
-    hist(fire$problem_count, xlim = (c(0,800)), xlab = "Problem count", main = "Sturges")
-  })
+  # Histogram
+  output$outputFill1 <- renderPrint({ input$inputFill1 })
 
-  output$singleScott <- renderPlot({
-    hist(fire$problem_count, xlim = (c(0,800)), breaks = "Scott", xlab = "Problem count", main = "Scott")
-  })
-
-  output$singleFreedman <- renderPlot({
-    hist(fire$problem_count, xlim = (c(0,800)), breaks = "FD", xlab = "Problem count", main = "Freedman-Diaconis")
+  answerFill1 <- observeEvent(input$submitFill1, {
+    if (input$inputFill1 == "Sturges") {
+      output$resultFill1 <- renderPlot({
+        hist(fire$problem_count, xlim = (c(0,800)), breaks = "Sturges", xlab = "Problem count", main = "Sturges")
+      })
+    }
+    else if (input$inputFill1 == "Scott") {
+      output$resultFill1 <- renderPlot({
+        hist(fire$problem_count, xlim = (c(0,800)), breaks = "Scott", xlab = "Problem count", main = "Scott")
+      })
+    }
+    else if (input$inputFill1 == "FD" | input$submitFill1 == "Freedman-Diaconis") {
+      output$resultFill1 <- renderPlot({
+        hist(fire$problem_count, xlim = (c(0,800)), breaks = "FD", xlab = "Problem count", main = "Freedman-Diaconis")
+      })
+    }
   })
 
   # Takes the input and places in a variable
@@ -30,8 +39,6 @@ server <- function(input, output) {
   output$outputProvide4 <- renderPrint({ input$inputProvide4 })
 
   # When the submit button is clicked, it will obtain the input and compare to the answer.
-
-  # You should change 7 numbers
   output$outputMult1 <- renderText({ input$inputMult1 })
   answerMult1 <- eventReactive(input$submitMult1, {
     if (input$inputMult1 == 'C') {
@@ -309,14 +316,14 @@ server <- function(input, output) {
 
   # This particular example requires a number for the input
   # The code will have to be modified for other types of questions.
-  answerFill2 <- eventReactive(input$submitFill2, {
+  answerFill1 <- eventReactive(input$submitFill1, {
     # Checks if the input does not contain a non-digit: AKA, if input contains only numbers.
     # The input is stored as a string, so we can't use is.numeric()
-    if (!grepl("\\D", input$inputFill2)) {
+    if (!grepl("\\D", input$inputFill1)) {
 
       # If so, runs the code using the input.
       get_example <- function(x){
-        z <- x + as.numeric(input$inputFill2) # as.numeric to convert the input string to a numeric
+        z <- x + as.numeric(input$inputFill1) # as.numeric to convert the input string to a numeric
         return(z)
       }
 

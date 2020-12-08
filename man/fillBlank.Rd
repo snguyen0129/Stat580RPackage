@@ -4,7 +4,7 @@
 \alias{fillBlank}
 \title{Fill in the Blank Question}
 \usage{
-fillBlank(questionNum, questionBody)
+fillBlank(questionNum, questionBody, questionCode)
 }
 \arguments{
 \item{questionNum}{Integer, the question number}
@@ -13,9 +13,4 @@ fillBlank(questionNum, questionBody)
 }
 \description{
 Creates the UI for a fill-in-the-blank question using textboxes, allowing a user input to be obtained.
-}
-\examples{
-fillBlank(1, "get_example <- function(x){\n  z <- x + ___\n  return(z)\n}\n> get_example(2)\''nOUTPUT: 3")
-
-
 }
