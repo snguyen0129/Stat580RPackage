@@ -66,18 +66,31 @@ server <- function(input, output) {
   output$outputCheck6 <- renderText({ input$inputCheck6 })
   output$outputProvide7 <- renderPrint({ input$inputProvide7 })
 
+  answerFill3 <- observeEvent(input$submitFill3, {
+    if (input$inputFill3 == "month_response") {
+      output$resultFill3 <- renderPlot({
+        library(hexbin)
+        plot(hexbin(fire$month_response, fire$problem_count, xbins = 15), xlab = "Month Response", ylab = "Problem Count")
+      })
+    }
+  })
+
+  answerFill4 <- observeEvent(input$submitFill4, {
+    if (input$inputFill4 == "MASS") {
+      output$resultFill4 <- renderPlot({
+        library(MASS)
+        dens <- kde2d(fire$month_response, fire$problem_count, n = 100, h = c(4,3000))
+        image(dens, xlab = "Month Response", ylab = "Problem Count")
+      })
+    }
+  })
+
   answerFill5 <- observeEvent(input$submitFill5, {
     if (input$inputFill5 == "pairs") {
       output$resultFill5 <- renderPlot({ pairs(fire[, c("problem_count", "month_response","year_response")])
       })
     }
   })
-
-  # Takes the input and places in a variable
-  # Used to display the user's input back to them, allowing them to verify their answer
-  output$outputFill2 <- renderPrint({ input$inputFill2 })
-  output$outputCheck3 <- renderText({ input$inputCheck3 })
-  output$outputProvide4 <- renderPrint({ input$inputProvide4 })
 
   answerFill6 <- observeEvent(input$submitFill6, {
     if (input$inputFill6 == "corr") {
@@ -113,12 +126,6 @@ server <- function(input, output) {
       })
     }
   })
-
-  # Takes the input and places in a variable
-  # Used to display the user's input back to them, allowing them to verify their answer
-  output$outputFill2 <- renderPrint({ input$inputFill2 })
-  output$outputCheck3 <- renderText({ input$inputCheck3 })
-  output$outputProvide4 <- renderPrint({ input$inputProvide4 })
 
   # When the submit button is clicked, it will obtain the input and compare to the answer.
   output$outputMult1 <- renderText({ input$inputMult1 })
