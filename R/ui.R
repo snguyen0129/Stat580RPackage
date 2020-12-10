@@ -39,53 +39,53 @@ ui <- dashboardPage(
     menuSubItem("Scree Plot Q22", tabName = "sub22"),
     menuSubItem("Scree Plot Q23", tabName = "sub23"),
     menuSubItem("Scree Plot Q24", tabName = "sub24")
-    )),
+  )),
   dashboardBody(
     tabItems(
       tabItem(tabName = "intro",
-        h1("Introduction"),
-        fluidRow(
-          column(12, wellPanel(
-            h4(introText, style = "line-height: 1.5;")
-          )))),
+              h1("Introduction"),
+              fluidRow(
+                column(12, wellPanel(
+                  h4(introText, style = "line-height: 1.5;")
+                )))),
 
       tabItem(tabName = "singleVis",
-        h1("Visualization in Single Dimensions"),
-        fluidRow(column(12, wellPanel(
-          h4(single1, style = "line-height: 1.5;"),
-          h4(single2, style = "line-height: 1.5;"),
-          h4(single3, style = "line-height: 1.5;"),
-          h4(single4, style = "line-height: 1.5;"),
-          h4(single5, style = "line-height: 1.5;"),
-          h4(single6, style = "line-height: 1.5;"),
-          h4(single7, style = "line-height: 1.5;")))),
-        fluidRow(do.call(fillBlank, getHist), answerHist),
-        fluidRow(column(12, wellPanel(
-          h4(single8, style = "line-height: 1.5;"),
-          h4(single9, style = "line-height: 1.5;"))))),
+              h1("Visualization in Single Dimensions"),
+              fluidRow(column(12, wellPanel(
+                h4(single1, style = "line-height: 1.5;"),
+                h4(single2, style = "line-height: 1.5;"),
+                h4(single3, style = "line-height: 1.5;"),
+                h4(single4, style = "line-height: 1.5;"),
+                h4(single5, style = "line-height: 1.5;"),
+                h4(single6, style = "line-height: 1.5;"),
+                h4(single7, style = "line-height: 1.5;")))),
+              fluidRow(do.call(fillBlank, getHist), answerHist),
+              fluidRow(column(12, wellPanel(
+                h4(single8, style = "line-height: 1.5;"),
+                h4(single9, style = "line-height: 1.5;"))))),
       tabItem(tabName = "sub1",
-        fluidRow(do.call(multChoice, q1Question), q1Answer)),
+              fluidRow(do.call(multChoice, q1Question), q1Answer)),
       tabItem(tabName = "sub2",
-        fluidRow(do.call(multChoice, q2Question), q2Answer)),
+              fluidRow(do.call(multChoice, q2Question), q2Answer)),
       tabItem(tabName = "sub3",
-        fluidRow(do.call(multChoice, q3Question), q3Answer)),
+              fluidRow(do.call(multChoice, q3Question), q3Answer)),
       tabItem(tabName = "sub4",
-        fluidRow(do.call(multChoice, q4Question), q4Answer)),
+              fluidRow(do.call(multChoice, q4Question), q4Answer)),
       tabItem(tabName = "sub5",
-        fluidRow(do.call(multChoice, q5Question), q5Answer)),
+              fluidRow(do.call(multChoice, q5Question), q5Answer)),
       tabItem(tabName = "sub6",
-        fluidRow(do.call(multChoice, q6Question), q6Answer)),
+              fluidRow(do.call(multChoice, q6Question), q6Answer)),
       tabItem(tabName = "sub7",
               fluidRow(do.call(multChoice, q7Question), q7Answer)),
 
       tabItem(tabName = "doubleVis",
-        h1("Visualization in Double Dimensions"),
-        fluidRow(column(12, wellPanel(
-          h4(double1, style = "line-height: 1.5;"),
-          h4(double2, style = "line-height: 1.5;"),
-          h4(double3, style = "line-height: 1.5;"),
-          h4(double4, style = "line-height: 1.5;"),
-          h4(double5, style = "line-height: 1.5;"))))),
+              h1("Visualization in Double Dimensions"),
+              fluidRow(column(12, wellPanel(
+                h4(double1, style = "line-height: 1.5;"),
+                h4(double2, style = "line-height: 1.5;"),
+                h4(double3, style = "line-height: 1.5;"),
+                h4(double4, style = "line-height: 1.5;"),
+                h4(double5, style = "line-height: 1.5;"))))),
       tabItem(tabName = "sub8",
               fluidRow(do.call(multChoice, q8Question), q8Answer)),
       tabItem(tabName = "sub9",
@@ -95,13 +95,18 @@ ui <- dashboardPage(
       tabItem(tabName = "sub11",
               fluidRow(do.call(multChoice, q11Question), q11Answer)),
 
+
       tabItem(tabName = "corrVis",
-        h1("Correlation Visualization"),
-        fluidRow(column(12, wellPanel(
-          h4(corr1, style = "line-height: 1.5;"),
-          h4(corr2, style = "line-height: 1.5;"),
-          h4(corr3, style = "line-height: 1.5;"),
-          h4(corr4, style = "line-height: 1.5;"))))),
+              h1("Correlation Visualization"),
+              fluidRow(column(12, wellPanel(
+                h4(corr1, style = "line-height: 1.5;"),
+                h4(corr2, style = "line-height: 1.5;")))),
+              fluidRow(do.call(fillBlank, getScatter), answerScatter),
+              fluidRow(column(12, wellPanel(
+                  h4(corr3, style = "line-height: 1.5;"),
+                  h4(corr4, style = "line-height: 1.5;")))),
+              fluidRow(do.call(fillBlank, getCorr), answerCorr)),
+
       tabItem(tabName = "sub12",
               fluidRow(do.call(multChoice, q12Question), q12Answer)),
       tabItem(tabName = "sub13",
@@ -111,14 +116,18 @@ ui <- dashboardPage(
       tabItem(tabName = "sub15",
               fluidRow(do.call(multChoice, q15Question), q15Answer)),
 
+
       tabItem(tabName = "prinComp",
-        h1("Principal Component Analysis"),
-        fluidRow(column(12, wellPanel(
-          h4(prin1, style = "line-height: 1.5;"),
-          h4(prin2, style = "line-height: 1.5;"),
-          h4(prin3, style = "line-height: 1.5;"),
-          h4(prin4, style = "line-height: 1.5;"),
-          h4(prin5, style = "line-height: 1.5;"))))),
+              h1("Principal Component Analysis"),
+              fluidRow(column(12, wellPanel(
+                h4(prin1, style = "line-height: 1.5;"),
+                h4(prin2, style = "line-height: 1.5;"),
+                h4(prin3, style = "line-height: 1.5;")))),
+              fluidRow(do.call(fillBlank, getPCA), answerPCA),
+              fluidRow(column(12, wellPanel(
+                h4(prin4, style = "line-height: 1.5;"),
+                h4(prin5, style = "line-height: 1.5;")))),
+              fluidRow(do.call(fillBlank, getScree), answerScree)),
       tabItem(tabName = "sub16",
               fluidRow(do.call(multChoice, q16Question), q16Answer)),
       tabItem(tabName = "sub17",
@@ -137,9 +146,9 @@ ui <- dashboardPage(
               fluidRow(do.call(multChoice, q23Question), q23Answer)),
       tabItem(tabName = "sub24",
               fluidRow(do.call(multChoice, q24Question), q24Answer))
-      )
     )
   )
+)
 
 #  fluidRow(fillBlank(2, "get_example <- function(x){\n  z <- x + ___\n  return(z)\n}\n> get_example(2)\nOUTPUT: 3"), q2Answer)),
 #  fluidRow(checkBox(3, "Sample Check Box", "Answer 1", "Answer 2", "Answer 3", "Answer 4"), q3Answer)),
