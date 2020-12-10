@@ -62,7 +62,8 @@ ui <- dashboardPage(
               fluidRow(do.call(fillBlank, getHist), answerHist),
               fluidRow(column(12, wellPanel(
                 h4(single8, style = "line-height: 1.5;"),
-                h4(single9, style = "line-height: 1.5;"))))),
+                h4(single9, style = "line-height: 1.5;")))),
+              fluidRow(do.call(fillBlank, getDens), answerDens)),
       tabItem(tabName = "sub1",
               fluidRow(do.call(multChoice, q1Question), q1Answer)),
       tabItem(tabName = "sub2",
