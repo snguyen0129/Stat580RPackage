@@ -14,6 +14,17 @@ getDens <- list(2, "Try filling in the blank with 'gaussian', 'triangular', or '
 plot(Kernal, kernel = '_____', lwd = 2, col = 'black', main = 'KDEs for Month Response')")
 answerDens <- column(6, plotOutput('resultFill2'))
 
+getHex <- list(3, "Try filling in the blank to create a hexbin visual comparing month response and problem count. Note, wrong answers won't do anything!",
+"library(hexbin)\n
+plot(hexbin(fire$_____, fire$problem_count, xbins = 15), xlab = 'Month Response', ylab = 'Problem Count')")
+answerHex <- column(6, plotOutput('resultFill3'))
+
+getKde2d <- list(4, "Try filling in the blank to create a kde2d() visual comparing month response and problem count. Note, wrong answers won't do anything!",
+"library(____)\n
+dens <- kde2d(fire$month_response, fire$problem_count, n = 100, h = c(4,3000))\n
+image(dens, xlab = 'Month Response', ylab = 'Problem Count')")
+answerKde2d <- column(6, plotOutput('resultFill4'))
+
 getScatter <- list(5, "Try to fill in the blank with a function that creates a 3D scatterplot matrix and compare the results to that of the kde2d() plot. Note wrong answers won't do anything!", "scatter <- _____(fire[, c('problem_count', 'month_response','year_response')])\nscatter")
 answerScatter <- column(6, plotOutput('resultFill5'))
 
