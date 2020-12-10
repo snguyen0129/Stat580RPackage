@@ -83,10 +83,13 @@ ui <- dashboardPage(
               h1("Visualization in Double Dimensions"),
               fluidRow(column(12, wellPanel(
                 h4(double1, style = "line-height: 1.5;"),
-                h4(double2, style = "line-height: 1.5;"),
+                h4(double2, style = "line-height: 1.5;")))),
+              fluidRow(do.call(fillBlank, getHex), answerHex),
+              fluidRow(column(12, wellPanel(
                 h4(double3, style = "line-height: 1.5;"),
                 h4(double4, style = "line-height: 1.5;"),
-                h4(double5, style = "line-height: 1.5;"))))),
+                h4(double5, style = "line-height: 1.5;"),
+                fluidRow(do.call(fillBlank, getKde2d), answerKde2d))))),
       tabItem(tabName = "sub8",
               fluidRow(do.call(multChoice, q8Question), q8Answer)),
       tabItem(tabName = "sub9",
