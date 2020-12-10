@@ -38,6 +38,61 @@ server <- function(input, output) {
   output$outputCheck3 <- renderText({ input$inputCheck3 })
   output$outputProvide4 <- renderPrint({ input$inputProvide4 })
 
+
+  answerFill5 <- observeEvent(input$submitFill5, {
+    if (input$inputFill5 == "pairs") {
+      output$resultFill5 <- renderPlot({ pairs(fire[, c("problem_count", "month_response","year_response")])
+      })
+    }
+  })
+
+  # Takes the input and places in a variable
+  # Used to display the user's input back to them, allowing them to verify their answer
+  output$outputFill2 <- renderPrint({ input$inputFill2 })
+  output$outputCheck3 <- renderText({ input$inputCheck3 })
+  output$outputProvide4 <- renderPrint({ input$inputProvide4 })
+
+  answerFill6 <- observeEvent(input$submitFill6, {
+    if (input$inputFill6 == "corr") {
+      output$resultFill6 <- renderPlot({
+        library(corrplot)
+        corr_fire <- cor(fire[,c("problem_count", "month_response","year_response")])
+        corrplot(corr_fire)
+      })
+    }
+  })
+
+  answerFill7 <- observeEvent(input$submitFill7, {
+    if (input$inputFill7 == "scale") {
+      output$resultFill7 <- renderPlot({
+        fire <- fire[,c("problem_count", "month_response","year_response")]
+        fire_scale <- scale(fire)
+
+        P <- eigen(cov(fire_scale))$vectors
+        lambda <- eigen(cov(fire_scale))$values
+        eq_pc <- prcomp(fire_scale)
+        sqrt(lambda)
+        eq_pc$sdev
+      })
+    }
+  })
+
+  answerFill8 <- observeEvent(input$submitFill8, {
+    if (input$inputFill8 == "cumsum") {
+      output$resultFill8 <- renderPlot({
+        eq_eigen_all <- eigen(cov(fire_scale))
+        plot(cumsum(eq_eigen_all$values)/sum(eq_eigen_all$values),xlab = "PC", ylab = "Proportion of variance explained")
+        abline(h = 0.9, lty = 2)
+      })
+    }
+  })
+
+  # Takes the input and places in a variable
+  # Used to display the user's input back to them, allowing them to verify their answer
+  output$outputFill2 <- renderPrint({ input$inputFill2 })
+  output$outputCheck3 <- renderText({ input$inputCheck3 })
+  output$outputProvide4 <- renderPrint({ input$inputProvide4 })
+
   # When the submit button is clicked, it will obtain the input and compare to the answer.
   output$outputMult1 <- renderText({ input$inputMult1 })
   answerMult1 <- eventReactive(input$submitMult1, {
