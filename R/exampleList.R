@@ -12,7 +12,7 @@ answerHist <- column(6, plotOutput('resultFill1'))
 getScatter <- list(5, "Try to fill in the blank with a function that creates a 3D scatterplot matrix and compare the results to that of the kde2d() plot. Note wrong answers won't do anything!", "scatter <- _____(fire[, c('problem_count', 'month_response','year_response')])\nscatter")
 answerScatter <- column(6, plotOutput('resultFill5'))
 
-getCorr <- list(6, "Try filling in the blank to create a corrplot. Note, any wrong answer won't do anything!", "library(corrplot)\n
+getCorr <- list(6, "Try filling in the blank to create a corrplot. Note, wrong answers won't do anything!", "library(corrplot)\n
 corr_fire <- ____(fire[,c('problem_count', 'month_response','year_response')])\n
 corrplot(corr_fire)")
 answerCorr <- column(6, plotOutput('resultFill6'))
