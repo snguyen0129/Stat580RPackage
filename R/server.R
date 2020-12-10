@@ -39,6 +39,33 @@ server <- function(input, output) {
   output$outputProvide4 <- renderPrint({ input$inputProvide4 })
 
 
+  answerFill2 <- observeEvent(input$submitFill2, {
+    if (input$inputFill2 == "gaussian") {
+      output$resultFill2 <- renderPlot({
+        Kernal <- density(fire$problem_count)
+        plot(Kernal, kernel = "gaussian", lwd = 2, col = "black", main = "KDEs for Month Response")
+      })
+    }
+    else if (input$inputFill2 == "rectangular") {
+      output$resultFill2 <- renderPlot({
+        Kernal <- density(fire$problem_count)
+        plot(Kernal, kernel = "rectangular", lwd = 2, col = "black", main = "KDEs for Month Response")
+        })
+    }
+    else if (input$inputFill2 == "triangular" | input$submitFill2 == "triangular") {
+      output$resultFill2 <- renderPlot({
+        Kernal <- density(fire$problem_count)
+        plot(Kernal, kernel = "triangular", lwd = 2, col = "black", main = "KDEs for Month Response")
+      })
+    }
+  })
+
+  # Takes the input and places in a variable
+  # Used to display the user's input back to them, allowing them to verify their answer
+  output$outputFill5 <- renderPrint({ input$inputFill5 })
+  output$outputCheck6 <- renderText({ input$inputCheck6 })
+  output$outputProvide7 <- renderPrint({ input$inputProvide7 })
+
   answerFill5 <- observeEvent(input$submitFill5, {
     if (input$inputFill5 == "pairs") {
       output$resultFill5 <- renderPlot({ pairs(fire[, c("problem_count", "month_response","year_response")])
@@ -64,15 +91,15 @@ server <- function(input, output) {
 
   answerFill7 <- observeEvent(input$submitFill7, {
     if (input$inputFill7 == "scale") {
-      output$resultFill7 <- renderPlot({
+      output$resultFill7 <- renderTable({
         fire <- fire[,c("problem_count", "month_response","year_response")]
         fire_scale <- scale(fire)
 
         P <- eigen(cov(fire_scale))$vectors
         lambda <- eigen(cov(fire_scale))$values
         eq_pc <- prcomp(fire_scale)
-        sqrt(lambda)
-        eq_pc$sdev
+        eq_pc$rotation
+
       })
     }
   })
