@@ -2,15 +2,17 @@
 % Please edit documentation in R/fillBlank.R
 \name{fillBlank}
 \alias{fillBlank}
-\title{Fill in the Blank Question}
+\title{Fill in the Blank Example}
 \usage{
-fillBlank(questionNum, questionBody, questionCode)
+fillBlank(exampleNum, exampleBody, exampleCode)
 }
 \arguments{
-\item{questionNum}{Integer, the question number}
+\item{exampleNum}{Integer, the example number}
 
-\item{questionBody}{String, the question being asked}
+\item{exampleBody}{String, the example question being asked}
+
+\item{exampleCode}{String, the code provided to fill the blank in}
 }
 \description{
-Creates the UI for a fill-in-the-blank question using textboxes, allowing a user input to be obtained.
+Creates the UI for a fill-in-the-blank example using textboxes, allowing a user input to be obtained.
 }
