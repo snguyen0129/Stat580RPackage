@@ -10,6 +10,7 @@
 ui <- dashboardPage(
   dashboardHeader(title = "STAT580 Visualization and Kernel Density Estimation", titleWidth = 500),
   dashboardSidebar(h3("Navigation", align = "center"), sidebarMenu(
+    # Navigation sidebar tabs
     menuItem("Introduction", tabName = "intro"),
     menuItem("Visualization in Single Dimensions", tabName = "singleVis"),
     menuSubItem("Histograms Q1", tabName = "sub1"),
@@ -42,13 +43,17 @@ ui <- dashboardPage(
   )),
   dashboardBody(
     tabItems(
+      # Introduction page
+      # Check textList.R for variables that hold all the text
       tabItem(tabName = "intro",
               h1("Introduction"),
               fluidRow(
                 column(12, wellPanel(
                   h4(introText, style = "line-height: 1.5;")
-                )))),
-
+                ))),
+              h3("NOTE: Maximize the window for a better experience."),
+              h3("Examples may take a few seconds to render your input.")),
+      # Visualization in Single Dimensions page
       tabItem(tabName = "singleVis",
               h1("Visualization in Single Dimensions"),
               fluidRow(column(12, wellPanel(
@@ -59,11 +64,14 @@ ui <- dashboardPage(
                 h4(single5, style = "line-height: 1.5;"),
                 h4(single6, style = "line-height: 1.5;"),
                 h4(single7, style = "line-height: 1.5;")))),
+              # Example 1: Histogram
               fluidRow(do.call(fillBlank, getHist), answerHist),
               fluidRow(column(12, wellPanel(
                 h4(single8, style = "line-height: 1.5;"),
                 h4(single9, style = "line-height: 1.5;")))),
+              # Example 2: Density
               fluidRow(do.call(fillBlank, getDens), answerDens)),
+      # Single Dimension questions (7 total)
       tabItem(tabName = "sub1",
               fluidRow(do.call(multChoice, q1Question), q1Answer)),
       tabItem(tabName = "sub2",
@@ -78,18 +86,21 @@ ui <- dashboardPage(
               fluidRow(do.call(multChoice, q6Question), q6Answer)),
       tabItem(tabName = "sub7",
               fluidRow(do.call(multChoice, q7Question), q7Answer)),
-
+      # Visualization in Double Dimensions page
       tabItem(tabName = "doubleVis",
               h1("Visualization in Double Dimensions"),
               fluidRow(column(12, wellPanel(
                 h4(double1, style = "line-height: 1.5;"),
                 h4(double2, style = "line-height: 1.5;")))),
+              # Example 3: Hexbin
               fluidRow(do.call(fillBlank, getHex), answerHex),
               fluidRow(column(12, wellPanel(
                 h4(double3, style = "line-height: 1.5;"),
                 h4(double4, style = "line-height: 1.5;"),
-                h4(double5, style = "line-height: 1.5;"),
-                fluidRow(do.call(fillBlank, getKde2d), answerKde2d))))),
+                h4(double5, style = "line-height: 1.5;")))),
+              # Example 4: KDE2D
+              fluidRow(do.call(fillBlank, getKde2d), answerKde2d)),
+      # Double Dimension questions (4 total)
       tabItem(tabName = "sub8",
               fluidRow(do.call(multChoice, q8Question), q8Answer)),
       tabItem(tabName = "sub9",
@@ -98,19 +109,20 @@ ui <- dashboardPage(
               fluidRow(do.call(multChoice, q10Question), q10Answer)),
       tabItem(tabName = "sub11",
               fluidRow(do.call(multChoice, q11Question), q11Answer)),
-
-
+      # Correlation Visualization page
       tabItem(tabName = "corrVis",
               h1("Correlation Visualization"),
               fluidRow(column(12, wellPanel(
                 h4(corr1, style = "line-height: 1.5;"),
                 h4(corr2, style = "line-height: 1.5;")))),
+              # Example 5: Scatter
               fluidRow(do.call(fillBlank, getScatter), answerScatter),
               fluidRow(column(12, wellPanel(
                   h4(corr3, style = "line-height: 1.5;"),
                   h4(corr4, style = "line-height: 1.5;")))),
+              # Example 6: Correlation Plots
               fluidRow(do.call(fillBlank, getCorr), answerCorr)),
-
+      # Correlation Visualization questions (4 total)
       tabItem(tabName = "sub12",
               fluidRow(do.call(multChoice, q12Question), q12Answer)),
       tabItem(tabName = "sub13",
@@ -119,19 +131,21 @@ ui <- dashboardPage(
               fluidRow(do.call(multChoice, q14Question), q14Answer)),
       tabItem(tabName = "sub15",
               fluidRow(do.call(multChoice, q15Question), q15Answer)),
-
-
+      # Principal Component Analysis page
       tabItem(tabName = "prinComp",
               h1("Principal Component Analysis"),
               fluidRow(column(12, wellPanel(
                 h4(prin1, style = "line-height: 1.5;"),
                 h4(prin2, style = "line-height: 1.5;"),
                 h4(prin3, style = "line-height: 1.5;")))),
+              # Example 7: PCA
               fluidRow(do.call(fillBlank, getPCA), answerPCA),
               fluidRow(column(12, wellPanel(
                 h4(prin4, style = "line-height: 1.5;"),
                 h4(prin5, style = "line-height: 1.5;")))),
+              # Example 8: Scree Plots
               fluidRow(do.call(fillBlank, getScree), answerScree)),
+      # Principal Component Analysis questions (9 questions)
       tabItem(tabName = "sub16",
               fluidRow(do.call(multChoice, q16Question), q16Answer)),
       tabItem(tabName = "sub17",
@@ -141,21 +155,18 @@ ui <- dashboardPage(
       tabItem(tabName = "sub19",
               fluidRow(do.call(multChoice, q19Question), q19Answer)),
       tabItem(tabName = "sub20",
-              fluidRow(do.call(multChoice, q20Question), q20Answer)),
+              fluidRow(do.call(multChoice, q20Question), q20Answer),
+              imageOutput("pcatable")),
       tabItem(tabName = "sub21",
-              fluidRow(do.call(multChoice, q21Question), q21Answer)),
+              fluidRow(do.call(multChoice, q21Question), q21Answer),
+              imageOutput("pcatable2")), # Same image, but couldn't output it unless it was a new var
       tabItem(tabName = "sub22",
               fluidRow(do.call(multChoice, q22Question), q22Answer)),
       tabItem(tabName = "sub23",
               fluidRow(do.call(multChoice, q23Question), q23Answer)),
       tabItem(tabName = "sub24",
-              fluidRow(do.call(multChoice, q24Question), q24Answer))
+              fluidRow(do.call(multChoice, q24Question), q24Answer),
+              imageOutput("screeplot"))
     )
   )
 )
-
-#  fluidRow(fillBlank(2, "get_example <- function(x){\n  z <- x + ___\n  return(z)\n}\n> get_example(2)\nOUTPUT: 3"), q2Answer)),
-#  fluidRow(checkBox(3, "Sample Check Box", "Answer 1", "Answer 2", "Answer 3", "Answer 4"), q3Answer)),
-#  fluidRow(freeForm(4, 'Provide code that evaluates to 5.'), q4Answer)),
-#  fluidRow(do.call(multChoice, binQuestion), binAnswer)),
-

@@ -1,23 +1,24 @@
-#' Fill in the Blank Question
+#' Fill in the Blank Example
 #'
-#' Creates the UI for a fill-in-the-blank question using textboxes, allowing a user input to be obtained.
+#' Creates the UI for a fill-in-the-blank example using textboxes, allowing a user input to be obtained.
 #'
 #' @import shiny
 #'
-#' @param questionNum Integer, the question number
-#' @param questionBody String, the question being asked
+#' @param exampleNum Integer, the example number
+#' @param exampleBody String, the example question being asked
+#' @param exampleCode String, the code provided to fill the blank in
 #'
 #'
 
-fillBlank <- function(questionNum, questionBody, questionCode) {
+fillBlank <- function(exampleNum, exampleBody, exampleCode) {
   column(6, wellPanel(
-    h2(paste("Question", questionNum)),
-    h4(questionBody),
-    tags$pre(questionCode),
-    textInput(paste("inputFill", questionNum, sep = ""), label = "", width = '80px'), # Fixed width depending on how much space they need
+    h2(paste("Example", exampleNum)),
+    h4(exampleBody),
+    tags$pre(exampleCode),
+    textInput(paste("inputFill", exampleNum, sep = ""), label = "", width = '100px'), # Fixed width depending on how much space they need
     p("Your input is:", style = "color:#888888;"),
-    verbatimTextOutput(paste("outputFill", questionNum, sep = "")),
+    verbatimTextOutput(paste("outputFill", exampleNum, sep = "")),
     br(),
-    actionButton(paste("submitFill", questionNum, sep = ""), "Submit", class = "btn btn-primary")
+    actionButton(paste("submitFill", exampleNum, sep = ""), "Submit", class = "btn btn-primary")
   ))
 }
