@@ -39,7 +39,8 @@ ui <- dashboardPage(
     menuSubItem("Scree Plot Q21", tabName = "sub21"),
     menuSubItem("Scree Plot Q22", tabName = "sub22"),
     menuSubItem("Scree Plot Q23", tabName = "sub23"),
-    menuSubItem("Scree Plot Q24", tabName = "sub24")
+    menuSubItem("Scree Plot Q24", tabName = "sub24"),
+    menuItem("Conclusion", tabName = "outro")
   )),
   dashboardBody(
     tabItems(
@@ -166,7 +167,13 @@ ui <- dashboardPage(
               fluidRow(do.call(multChoice, q23Question), q23Answer)),
       tabItem(tabName = "sub24",
               fluidRow(do.call(multChoice, q24Question), q24Answer),
-              imageOutput("screeplot"))
+              imageOutput("screeplot")),
+      tabItem(tabName = "outro",
+              h1("Conclusion"),
+              fluidRow(
+                column(12, wellPanel(
+                  h4(outroText, style = "line-height: 1.5;")
+                ))))
     )
   )
 )
