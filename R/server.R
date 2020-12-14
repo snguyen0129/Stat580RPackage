@@ -11,9 +11,6 @@
 
 server <- function(input, output) {
 
-  # Read in dataset
-  fire <- read.csv("data/fire_incidents.csv")
-
   # Examples
   # Output that displays the user's input back to them
   output$outputFill1 <- renderPrint({ input$inputFill1 })
