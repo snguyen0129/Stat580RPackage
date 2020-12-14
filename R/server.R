@@ -36,7 +36,12 @@ server <- function(input, output) {
         hist(fire$problem_count, xlim = (c(0,800)), breaks = "Scott", xlab = "Problem count", main = "Scott")
       })
     }
-    else if (tolower(input$inputFill1) == "fd" | input$submitFill1 == "freedman-diaconis") {
+    else if (tolower(input$inputFill1) == "fd") {
+      output$resultFill1 <- renderPlot({
+        hist(fire$problem_count, xlim = (c(0,800)), breaks = "FD", xlab = "Problem count", main = "Freedman-Diaconis")
+      })
+    }
+    else if (tolower(input$inputFill1) == "freedman-diaconis") { # For some reason, OR '|' '||' operators didn't work.
       output$resultFill1 <- renderPlot({
         hist(fire$problem_count, xlim = (c(0,800)), breaks = "FD", xlab = "Problem count", main = "Freedman-Diaconis")
       })
