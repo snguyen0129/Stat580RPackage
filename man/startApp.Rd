@@ -10,7 +10,7 @@ startApp()
 shiny application object
 }
 \description{
-Launches the created shiny app
+Launches the created shiny app.
 }
 \examples{
 \dontrun{startApp()}

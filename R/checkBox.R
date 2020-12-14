@@ -17,11 +17,16 @@
 #'
 
 checkBox <- function(questionNum, questionBody, answerA, answerB, answerC, answerD) {
+  selection <- c("A","B", "C", "D")
+
   A <- paste("A)", answerA)
   B <- paste("B)", answerB)
   C <- paste("C)", answerC)
   D <- paste("D)", answerD)
-  selection <- c(A = "A", B = "B", C = "C", D = "D")
+  answer <- list(A, B, C, D)
+
+  names(selection) <- answer
+  # selection <- c(varA = "A", varB = "B", varC = "C", varD = "D")
 
   column(8, wellPanel(
     h2(paste("Question", questionNum)),

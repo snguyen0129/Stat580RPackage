@@ -15,10 +15,11 @@ multChoice(questionNum, questionBody, ...)
 }
 \description{
 Creates the UI for a multiple choice question using Radio Buttons, allowing one answer to be selected.
+Only built for a maximum of four answers.
 }
 \examples{
 multChoice(1, "Sample Multiple Choice", "Answer 1", "Answer 2", "Answer 3", "Answer 4")
-multChoice(1, "Sample Multiple Choice", "Answer 1", "Answer 2", "Answer 3")
+multChoice(2, "Sample Multiple Choice", "Answer 1", "Answer 2", "Answer 3")
 
 
 }

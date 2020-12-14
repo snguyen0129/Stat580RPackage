@@ -58,8 +58,8 @@ q19Answer <- column(4, h4(textOutput('resultMult19')))
 q20Question <- list(20, "After computing PCA  of your data, you get this table. What does the first column of numbers represent?", "PC1", "PC2", "PC3", "PC4")
 q20Answer <- column(4, h4(textOutput('resultMult20')))
 
-q21Question <- list(21, "Using the table above, which variable(s) strongly correlate with PC2?", "Median_age", "Population", "Children_proportion", "Both a and c")
-q21Answer <- column(4, h4(textOutput('resultMult21')))
+q21Question <- list(21, "Using the table above, which variable(s) strongly correlate with PC2?", "median_income", "population", "children_proportion", "income_ineq")
+q21Answer <- column(4, h4(textOutput('resultCheck21')))
 
 q22Question <- list(22, "A scree plot shows how many __ account for a certain amount of variability.", "Variables", "PC’s", "Datapoints", "All of the above.")
 q22Answer <- column(4, h4(textOutput('resultMult22')))

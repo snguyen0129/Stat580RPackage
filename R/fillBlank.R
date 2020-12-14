@@ -6,7 +6,10 @@
 #'
 #' @param exampleNum Integer, the example number
 #' @param exampleBody String, the example question being asked
-#' @param exampleCode String, the code provided to fill the blank in
+#' @param exampleCode String, the code provided to fill the blank in. Will be formatted as code.
+#'
+#' @examples
+#' fillBlank(1, "What do you input for getNum to equal 5?", "getNum <- (2 + ___)")
 #'
 #'
 

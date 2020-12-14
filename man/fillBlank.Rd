@@ -11,8 +11,13 @@ fillBlank(exampleNum, exampleBody, exampleCode)
 
 \item{exampleBody}{String, the example question being asked}
 
-\item{exampleCode}{String, the code provided to fill the blank in}
+\item{exampleCode}{String, the code provided to fill the blank in. Will be formatted as code.}
 }
 \description{
 Creates the UI for a fill-in-the-blank example using textboxes, allowing a user input to be obtained.
+}
+\examples{
+fillBlank(1, "What do you input for getNum to equal 5?", "getNum <- (2 + ___)")
+
+
 }

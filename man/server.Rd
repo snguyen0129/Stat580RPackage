@@ -12,5 +12,5 @@ server(input, output)
 \item{output}{provided by shiny}
 }
 \description{
-Obtains info and returns data
+Obtains info and returns data to the UI for the Shiny app to function.
 }

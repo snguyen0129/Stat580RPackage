@@ -1,6 +1,6 @@
 #' Shiny app Server
 #'
-#' Obtains info and returns data
+#' Obtains info and returns data to the UI for the Shiny app to function.
 #'
 #' @import shiny MASS hexbin corrplot
 #'
@@ -150,7 +150,7 @@ server <- function(input, output) {
   output$outputMult18 <- renderText({ input$inputMult18 })
   output$outputMult19 <- renderText({ input$inputMult19 })
   output$outputMult20 <- renderText({ input$inputMult20 })
-  output$outputMult21 <- renderText({ input$inputMult21 })
+  output$outputCheck21 <- renderText({ input$inputCheck21 })
   output$outputMult22 <- renderText({ input$inputMult22 })
   output$outputMult23 <- renderText({ input$inputMult23 })
   output$outputMult24 <- renderText({ input$inputMult24 })
@@ -340,12 +340,12 @@ server <- function(input, output) {
     }
   })
 
-  answerMult21 <- eventReactive(input$submitMult21, {
-    if (input$inputMult21 == 'D') {
+  answerCheck21 <- eventReactive(input$submitCheck21, {
+    if (isTRUE(all.equal(input$inputCheck21, c("B", "C")))) {
       'Correct'
     }
     else {
-      'Incorrect. Correct answer is D.'
+      'Incorrect. Correct answer is B, C.'
     }
   })
 
@@ -399,25 +399,37 @@ server <- function(input, output) {
   output$resultMult18 <- renderText({ answerMult18() })
   output$resultMult19 <- renderText({ answerMult19() })
   output$resultMult20 <- renderText({ answerMult20() })
-  output$resultMult21 <- renderText({ answerMult21() })
+  output$resultCheck21 <- renderText({ answerCheck21() })
   output$resultMult22 <- renderText({ answerMult22() })
   output$resultMult23 <- renderText({ answerMult23() })
   output$resultMult24 <- renderText({ answerMult24() })
 
-  # Obtains image files from the /images folder and places in a variable to be rendered.
-  # $pcatable and $pcatable2 use the same images because it did not allow us to use the same
-  # variable twice.
-  output$pcatable <- renderImage({
-    filename <- normalizePath(file.path('./images', 'pcatable.png'))
-    list(src = filename)}, deleteFile = FALSE)
+  # Accompanying tables used for Question 20, 21
+  output$pcatable <- renderTable({
+    reduced_covid <- covid[c("population", "median_age", "median_income", "income_ineq", "children_proportion", "uninsured_employed_proportion", "uninsured_unemployed_proportion", "uninsured_notworking_proportion")]
+    covid_scale <- scale(reduced_covid)
+    eq_pc <- prcomp(covid_scale)
+    eq_pc$rotation
+  }, rownames = TRUE, colnames = FALSE)
 
-  output$pcatable2 <- renderImage({
-    filename <- normalizePath(file.path('./images', 'pcatable.png'))
-    list(src = filename)}, deleteFile = FALSE)
+  # This is the same table as above, but it apparently needs to be rendered twice or it
+  # wouldn't work.
+  output$pcatable2 <- renderTable({
+    reduced_covid <- covid[c("population", "median_age", "median_income", "income_ineq", "children_proportion", "uninsured_employed_proportion", "uninsured_unemployed_proportion", "uninsured_notworking_proportion")]
+    covid_scale <- scale(reduced_covid)
+    eq_pc <- prcomp(covid_scale)
+    eq_pc$rotation
+  }, rownames = TRUE, colnames = FALSE)
 
-  output$screeplot <- renderImage({
-    filename <- normalizePath(file.path('./images', 'screeplot.png'))
-    list(src = filename)}, deleteFile = FALSE)
+  #Scree Plot used for Question 24
+  output$screeplot <- renderPlot({
+    reduced_covid <- subset(covid, select= -c(zipcode, X, Y, case_count_proportion))
+    covid_scale <- scale(reduced_covid)
+
+    plot(cumsum(eigen(cov(covid_scale))$values)/sum(eigen(cov(covid_scale))$values),
+         xlab = "PC", ylab = "Proportion of variance explained")
+    abline(h = 0.9, lty = 2)
+  })
 
   # UNUSED CHECKBOX QUESTIONS
   #answerCheck3 <- eventReactive(input$submitCheck3, {

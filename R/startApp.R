@@ -1,6 +1,6 @@
 #' Start Shiny App
 #'
-#' Launches the created shiny app
+#' Launches the created shiny app.
 #'
 #' @import shiny
 #'

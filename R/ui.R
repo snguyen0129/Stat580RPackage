@@ -1,6 +1,6 @@
 #' Shiny app UI
 #'
-#' Builds the visible content
+#' Builds the visible content for the Shiny app to function.
 #'
 #' @import shiny
 #' @import shinydashboard
@@ -157,23 +157,21 @@ ui <- dashboardPage(
               fluidRow(do.call(multChoice, q19Question), q19Answer)),
       tabItem(tabName = "sub20",
               fluidRow(do.call(multChoice, q20Question), q20Answer),
-              imageOutput("pcatable")),
+              fluidRow(column(6, tableOutput('pcatable')))),
       tabItem(tabName = "sub21",
-              fluidRow(do.call(multChoice, q21Question), q21Answer),
-              imageOutput("pcatable2")), # Same image, but couldn't output it unless it was a new var
+              fluidRow(do.call(checkBox, q21Question), q21Answer),
+              fluidRow(column(6, tableOutput('pcatable2')))),
       tabItem(tabName = "sub22",
               fluidRow(do.call(multChoice, q22Question), q22Answer)),
       tabItem(tabName = "sub23",
               fluidRow(do.call(multChoice, q23Question), q23Answer)),
       tabItem(tabName = "sub24",
               fluidRow(do.call(multChoice, q24Question), q24Answer),
-              imageOutput("screeplot")),
+              fluidRow(column(8, plotOutput('screeplot')))),
       tabItem(tabName = "outro",
               h1("Conclusion"),
-              fluidRow(
-                column(12, wellPanel(
-                  h4(outroText, style = "line-height: 1.5;")
-                ))))
+              fluidRow(column(12, wellPanel(
+                  h4(outroText, style = "line-height: 1.5;")))))
     )
   )
 )

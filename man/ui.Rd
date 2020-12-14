@@ -11,6 +11,6 @@ An object of class \code{shiny.tag} of length 3.
 ui
 }
 \description{
-Builds the visible content
+Builds the visible content for the Shiny app to function.
 }
 \keyword{datasets}
