@@ -14,5 +14,5 @@
 #'
 #' @source https://data.sandiego.gov/datasets/fire-incidents/
 #'
-#' @examples
+#'
 "fire"
