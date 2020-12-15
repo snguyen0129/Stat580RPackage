@@ -1,0 +1,84 @@
+---
+title: "Introducing Kernel Density Estimation and Visualization"
+author: "Alfred Hernandez, Justin Nguyen, Sean Nguyen, and Kaelia Okamura"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  eval = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+options(rmarkdown.html_vignette.check_title = FALSE)
+```
+
+# Introduction
+This package is an instructional tool for learning Kernel Density and Visualization Methods in which you will obtain knowledge to create visuals, as well as the analysis of the theory behind these practices. These topics are not only useful in a job setting, but also as a hobby for the pursuit of knowledge about things you want to learn more about.
+
+One of the many challenges in reading text that involves code is that it can be hard to learn without practicing it yourself. The goal of this package is to not only help the user understand the various visualization topics, but also provide basic experience with the code related to these various topics.
+
+# Installation of Package
+In the console, type:
+```{r setup}
+install.packages("--filepath--/Stat580Package_0.1.0.tar.gz", repos = NULL, type = "source")
+```
+After the process of downloading and installing the package is complete, you will be ready to begin your learning journey through this package. To run the application:
+```{r start}
+library("Stat580RPackage")
+startApp()
+```
+
+# Material Content Description
+The material within this package is split up into four sections, where the descriptions follow:
+
+* Single Dimensional Visualization: This is the overview on how to make a histogram, while considering the choices for bin width sizes.
+
+* 2D Visualization: This will delve into the theory behind kernel density estimations, as well as making 2D visuals such as hexbins and the image of kernel density graphs.
+
+* Correlation of visualizations:  This will go into the interpretations of how to interpret correlated variables and how to graph the relationship between them.
+
+* Principal Component Analysis (PCA): This topic will explore the process of computing principal components and evaluating the relationships of variables with PCA.
+
+  After completing all of the materials in this package, you'll have the foundational knowledge to tackle many problems that arise in the data analytic or data science world if you choose to go in this field.
+  
+# Main Application of the Package
+  This package uses the fire incidents dataset, with the list of fire related incidents recorded in the San Diego area starting from 2012 to 2020. It contains many variables listed in the dataset for teaching purposes. 
+  
+  For more information, see the link to the dataset listed in the reference of this vignette below. 
+
+# How To Use It:
+  At first, the user will be welcomed to the introduction part of the package. There is a list of tabs on the left with the main topics split into the sections listed in the content descriptions. The multiple choice questions are labeled with the related subtopic within each main content section.
+  
+  In each of the main tabs for the content descriptions, the user will begin by reading the basic theory, then move on to a fill-in-the blank activity which the user should be able to do after they have read the content in the same tab. In the next several tabs, there are various amounts of multiple choice questions that the user will answer to assess their knowledge following the main section of the content.
+  
+  Once the user has gotten the correct answers on the last multiple choice question of each section, they will go to the left panel and click on the next tab which leads to the next big main section of the course content. This process will repeat again until the package is finished and the basis of all the topics are covered.
+
+Types of hands-on Activities:
+
+* Fill-in-the-blanks: Following what the user learned for the main course section, the user will be presented code that puts what the user read into practice. There will be one blank section in the code provided, where the user will be required to fill it in with the correct answer in order for the visual to pop up. The user will know when they have made errors in the blank option when nothing pops up to the right of the code. The user will be correct on the code when the results pop up.  
+
+* Multiple Choice: The user will answer a series of questions with 4 options to choose from after each section. This part of the package acts as the evaluation of the user’s knowledge after reading the main section and doing the fill-in-the-blank task. For each multiple choice question, there will be only one correct answer. There will also be visuals accompanying a few of these questions. After the user has clicked on one of the choices, they will click the submit button, then be notified if they got the answer correct. If they submitted an incorrect response, there will be a message on the right side of the question which tells them what the correct response is. 
+
+* Checkbox: The user will be given a question based on a table located below it. They will choose which answer(s) they believe are correct. If they have chosen all correct answers, they will be told it is correct on the right side of the question. If it is incorrect, they will be told what the correct answer(s) are. 
+
+The user will be done with the package once they have reached the conclusion tab. 
+
+When the user is finished, they can type
+```{r remove}
+remove.packages("Stat580RPackage")
+```
+This will uninstall the package from their system.
+
+# References
+* [Shiny App](https://shiny.rstudio.com/)
+
+* [Shiny Dashboard](https://rstudio.github.io/shinydashboard/)
+
+* Statistical Computing With R (2nd Edition) by Maria Rizzo
+
+* [San Diego Fire Incidents Dataset](https://data.sandiego.gov/datasets/fire-incidents/)
