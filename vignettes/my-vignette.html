@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Alfred Hernandez, Justin Nguyen, Sean Nguyen, and Kaelia Okamura" />
+
+
+<title>Introducing Kernel Density Estimation and Visualization</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introducing Kernel Density Estimation and Visualization</h1>
+<h4 class="author">Alfred Hernandez, Justin Nguyen, Sean Nguyen, and Kaelia Okamura</h4>
+
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This package is an instructional tool for learning Kernel Density and Visualization Methods in which you will obtain knowledge to create visuals, as well as the analysis of the theory behind these practices. These topics are not only useful in a job setting, but also as a hobby for the pursuit of knowledge about things you want to learn more about.</p>
+<p>One of the many challenges in reading text that involves code is that it can be hard to learn without practicing it yourself. The goal of this package is to not only help the user understand the various visualization topics, but also provide basic experience with the code related to these various topics.</p>
+</div>
+<div id="installation-of-package" class="section level1">
+<h1>Installation of Package</h1>
+<p>In the console, type:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;--filepath--/Stat580Package_0.1.0.tar.gz&quot;</span>, <span class="dt">repos =</span> <span class="ot">NULL</span>, <span class="dt">type =</span> <span class="st">&quot;source&quot;</span>)</span></code></pre></div>
+<p>After the process of downloading and installing the package is complete, you will be ready to begin your learning journey through this package. To run the application:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(<span class="st">&quot;Stat580RPackage&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">startApp</span>()</span></code></pre></div>
+</div>
+<div id="material-content-description" class="section level1">
+<h1>Material Content Description</h1>
+<p>The material within this package is split up into four sections, where the descriptions follow:</p>
+<ul>
+<li><p>Single Dimensional Visualization: This is the overview on how to make a histogram, while considering the choices for bin width sizes.</p></li>
+<li><p>2D Visualization: This will delve into the theory behind kernel density estimations, as well as making 2D visuals such as hexbins and the image of kernel density graphs.</p></li>
+<li><p>Correlation of visualizations: This will go into the interpretations of how to interpret correlated variables and how to graph the relationship between them.</p></li>
+<li><p>Principal Component Analysis (PCA): This topic will explore the process of computing principal components and evaluating the relationships of variables with PCA.</p>
+<p>After completing all of the materials in this package, you’ll have the foundational knowledge to tackle many problems that arise in the data analytic or data science world if you choose to go in this field.</p></li>
+</ul>
+</div>
+<div id="main-application-of-the-package" class="section level1">
+<h1>Main Application of the Package</h1>
+<p>This package uses the fire incidents dataset, with the list of fire related incidents recorded in the San Diego area starting from 2012 to 2020. It contains many variables listed in the dataset for teaching purposes.</p>
+<p>For more information, see the link to the dataset listed in the reference of this vignette below.</p>
+</div>
+<div id="how-to-use-it" class="section level1">
+<h1>How To Use It:</h1>
+<p>At first, the user will be welcomed to the introduction part of the package. There is a list of tabs on the left with the main topics split into the sections listed in the content descriptions. The multiple choice questions are labeled with the related subtopic within each main content section.</p>
+<p>In each of the main tabs for the content descriptions, the user will begin by reading the basic theory, then move on to a fill-in-the blank activity which the user should be able to do after they have read the content in the same tab. In the next several tabs, there are various amounts of multiple choice questions that the user will answer to assess their knowledge following the main section of the content.</p>
+<p>Once the user has gotten the correct answers on the last multiple choice question of each section, they will go to the left panel and click on the next tab which leads to the next big main section of the course content. This process will repeat again until the package is finished and the basis of all the topics are covered.</p>
+<p>Types of hands-on Activities:</p>
+<ul>
+<li><p>Fill-in-the-blanks: Following what the user learned for the main course section, the user will be presented code that puts what the user read into practice. There will be one blank section in the code provided, where the user will be required to fill it in with the correct answer in order for the visual to pop up. The user will know when they have made errors in the blank option when nothing pops up to the right of the code. The user will be correct on the code when the results pop up.</p></li>
+<li><p>Multiple Choice: The user will answer a series of questions with 4 options to choose from after each section. This part of the package acts as the evaluation of the user’s knowledge after reading the main section and doing the fill-in-the-blank task. For each multiple choice question, there will be only one correct answer. There will also be visuals accompanying a few of these questions. After the user has clicked on one of the choices, they will click the submit button, then be notified if they got the answer correct. If they submitted an incorrect response, there will be a message on the right side of the question which tells them what the correct response is.</p></li>
+<li><p>Checkbox: The user will be given a question based on a table located below it. They will choose which answer(s) they believe are correct. If they have chosen all correct answers, they will be told it is correct on the right side of the question. If it is incorrect, they will be told what the correct answer(s) are.</p></li>
+</ul>
+<p>The user will be done with the package once they have reached the conclusion tab.</p>
+<p>When the user is finished, they can type</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">remove.packages</span>(<span class="st">&quot;Stat580RPackage&quot;</span>)</span></code></pre></div>
+<p>This will uninstall the package from their system.</p>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<ul>
+<li><p><a href="https://shiny.rstudio.com/">Shiny App</a></p></li>
+<li><p><a href="https://rstudio.github.io/shinydashboard/">Shiny Dashboard</a></p></li>
+<li><p>Statistical Computing With R (2nd Edition) by Maria Rizzo</p></li>
+<li><p><a href="https://data.sandiego.gov/datasets/fire-incidents/">San Diego Fire Incidents Dataset</a></p></li>
+</ul>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
